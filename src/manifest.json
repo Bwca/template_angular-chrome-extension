@@ -1,0 +1,27 @@
+{
+  "manifest_version": 3,
+  "name": "{{EXTENSION_NAME}}",
+  "description": "{{EXTENSION_DESCRIPTION}}",
+  "version": "{{EXTENSION_VERSION}}",
+  "minimum_chrome_version": "127",
+  "icons": {
+    "128": "128.png"
+  },
+  "action": {
+    "default_popup": "index.html",
+    "default_title": "{{EXTENSION_NAME}}"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": ["activeTab", "storage"],
+  "content_scripts": [
+    {
+      "matches": ["{{CONTENT_SCRIPT_MATCHES}}"],
+      "js": ["content.js"]
+    }
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  }
+}

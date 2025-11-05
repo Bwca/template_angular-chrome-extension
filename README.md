@@ -1,6 +1,52 @@
-# TemplateAngularChromeExtension
+# Angular Chrome Extension Template
+
+This is a template for creating Chrome extensions using Angular + tsup. It provides a complete setup with background scripts, content scripts, and extension services.
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.8.
+
+## Chrome Extension Setup
+
+### 1. Configure Your Extension
+
+Edit `src/manifest.json` to customize your extension:
+- Replace `{{EXTENSION_NAME}}` with your extension name
+- Replace `{{EXTENSION_DESCRIPTION}}` with your extension description
+- Update `{{EXTENSION_VERSION}}` to your version
+- Update `{{CONTENT_SCRIPT_MATCHES}}` with the URLs where your content script should run
+
+### 2. Add Extension Icon
+
+Add a `128.png` icon file to the `public/` directory. This will be used as your extension's icon.
+
+### 3. Build the Extension
+
+```bash
+npm run build:extension
+```
+
+This will build both the Angular app and bundle the extension scripts using tsup.
+
+### 4. Load in Chrome
+
+1. Open Chrome and go to `chrome://extensions/`
+2. Enable "Developer mode" in the top right
+3. Click "Load unpacked" and select the `dist/template-angular-chrome-extension/browser/` directory
+
+### Extension Structure
+
+- `src/extension-scripts/background.ts` - Background service worker
+- `src/extension-scripts/content.ts` - Content script that runs on web pages
+- `src/manifest.json` - Extension manifest configuration
+
+### Development Workflow
+
+```bash
+# Watch mode for development (rebuilds on changes)
+npm run watch:extension
+
+# Build for production
+npm run build:extension
+```
 
 ## Development server
 
@@ -28,13 +74,23 @@ ng generate --help
 
 ## Building
 
-To build the project run:
+### Angular App Only
+
+To build just the Angular app, run:
 
 ```bash
 ng build
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+### Chrome Extension
+
+To build the complete Chrome extension (Angular app + extension scripts), run:
+
+```bash
+npm run build:extension
+```
+
+This will compile your Angular project and bundle the extension scripts using tsup. The build artifacts will be stored in the `dist/template-angular-chrome-extension/browser/` directory, ready to be loaded as an unpacked extension in Chrome.
 
 ## Running unit tests
 
